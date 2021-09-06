@@ -11,8 +11,14 @@ const withErrorHandler = (WrappedComponent) => {
 
         const getReqSpinner = useMemo(() => {
             return axios.interceptors.request.use(
-                setLoading(true),
-                console.log('loading'),
+                req => {
+                    setLoading(true);
+                    return req;
+                },
+                error => {
+                    setError(error);
+                    setLoading(false);
+                },
             );
         }, []);
 
@@ -24,11 +30,13 @@ const withErrorHandler = (WrappedComponent) => {
 
         const icId = useMemo(() => {
             return axios.interceptors.response.use(
-                setLoading(false),
-                console.log('loading done'),
-                null,
+                res => {
+                    setLoading(false);
+                    return res;
+                },
                 error => {
                     setError(error);
+                    setLoading(false);
                     throw error;
                 }
             );
