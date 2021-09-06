@@ -2,10 +2,11 @@ import React, { useState, useMemo, useEffect } from 'react';
 import axios from 'axios';
 import { Modal } from 'react-bootstrap';
 
-const withErrorHandler = WrappedComponent => {
+const withErrorHandler = (WrappedComponent , loadingSpinner) => {
     return function ErrorHandlerHOC(props) {
 
         const [error, setError] = useState(null);
+        const [loading ,setLoading] = useState(true);
 
         const icId = useMemo(() => {
             return axios.interceptors.response.use(
@@ -27,6 +28,10 @@ const withErrorHandler = WrappedComponent => {
             setError(null);
         };
 
+        const setLoadingState = isComponentLoading => {
+            setLoading(isComponentLoading);
+        }
+
         return (
             <>
                 <Modal show={Boolean(error)} onHide={dismiss}>
@@ -35,6 +40,7 @@ const withErrorHandler = WrappedComponent => {
                     </Modal.Header>
                     <Modal.Body>{error && error.message}</Modal.Body>
                 </Modal>
+                {loading && <Spinner message={loadingSpinner} />}
                 <WrappedComponent {...props} />
             </>
         )
