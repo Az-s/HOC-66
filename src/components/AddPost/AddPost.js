@@ -3,7 +3,7 @@ import { Form, Button, Card } from 'react-bootstrap';
 import dayjs from 'dayjs';
 import axiosApi from '../../axiosApi';
 import withErrorHandler from '../../hoc/withErrorHandler';
-import Spinners from '../Spinners/Spinners.js';
+import Spinners from '../Spinners/Spinners';
 
 const AddPost = ({history}) => {
 
@@ -66,7 +66,7 @@ const AddPost = ({history}) => {
     )
 
     if (loading) {
-        form = <Spinner />
+        form = <Spinners />
     }
 
     return (

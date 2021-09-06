@@ -21,10 +21,9 @@ const Posts = () => {
         fetchData().catch(console.error);
     }, []);
 
-
     return (
         <>
-            {allPosts.map(post => (
+          {allPosts.map(post => (
                 <Card style={{ margin: '5rem' }} className='mx-5' key={post.id} >
                     <Card.Header>Created on: {post.date}</Card.Header>
                     <Card.Body>
@@ -32,7 +31,7 @@ const Posts = () => {
                         <NavLink to={'/post' + post.id}><Button variant="outline-secondary" className='mt-2 btn-p'>Read more &#xbb;</Button></NavLink>
                     </Card.Body>
                 </Card>
-            ))}
+            ))} 
         </>
     )
 }

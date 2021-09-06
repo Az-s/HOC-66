@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Button } from 'react-bootstrap';
 // import { NavLink } from 'react-router-dom';
 import axiosApi from '../../axiosApi';
+import withErrorHandler from '../../hoc/withErrorHandler';
 
 const Post = ({ match , history}) => {
 
@@ -29,13 +30,13 @@ const Post = ({ match , history}) => {
                 <Card.Text>
                     {editPost.post.description}
                 </Card.Text>
-                <Card.Body className='d-flex justify-content-between'>
+                <Card.Body className='d-flex justify-content-center'>
                     {/* <NavLink to={'post/' + match.params.id + '/edit'}><Button variant="primary">Edit</Button></NavLink> */}
                     <Button variant="danger" onClick={deletePost}>&#10006;</Button>
                 </Card.Body>
             </Card.Body>
-        </Card >
+        </Card >    
     )
 }
 
-export default Post;
+export default withErrorHandler(Post);
