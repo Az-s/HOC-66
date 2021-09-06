@@ -3,6 +3,7 @@ import { Form, Button, Card } from 'react-bootstrap';
 import dayjs from 'dayjs';
 import axiosApi from '../../axiosApi';
 import Spinner from '../Spinners/Spinner';
+import withErrorHandler from '../../hoc/withErrorHandler';
 
 const AddPost = ({history}) => {
 
@@ -78,4 +79,4 @@ const AddPost = ({history}) => {
     )
 }
 
-export default AddPost;
+export default withErrorHandler(AddPost);

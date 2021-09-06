@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import axiosApi from '../../axiosApi';
+import withErrorHandler from '../../hoc/withErrorHandler';
 import './Posts.css';
 
 const Posts = () => {
@@ -36,4 +37,4 @@ const Posts = () => {
     )
 }
 
-export default Posts;
+export default withErrorHandler(Posts);
