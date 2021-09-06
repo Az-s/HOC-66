@@ -13,7 +13,6 @@ const withErrorHandler = (WrappedComponent) => {
             return axios.interceptors.request.use(
                 setLoading(true),
                 console.log('loading'),
-                null,
             );
         }, []);
 
@@ -34,6 +33,8 @@ const withErrorHandler = (WrappedComponent) => {
                 }
             );
         }, []);
+
+        //не понятно почему не отображается спиннер при interceptors.request,  если поменять false на true в setLoading(false) то спиннер появляется не знаю что не так в interceptors.request
 
         useEffect(() => {
             return () => {
